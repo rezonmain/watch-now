@@ -52,8 +52,7 @@ func getTwitchToken() *Token {
 }
 
 func subscribeToWebhooks(token *Token, channelNames []string) {
-	fmt.Println(token)
-	fmt.Println(channelNames)
+	return
 }
 
 func main() {
@@ -79,12 +78,13 @@ func main() {
 	})
 
 	// 4. Server
+	Port := fmt.Sprintf(":%s",os.Getenv("WATCH_NOW_PORT"))
 	s := http.Server{
-		Addr:    ":8080",
+		Addr:    Port,
 		Handler: router,
 	}
-	
-	fmt.Printf("Listening in port :8080\n")
+
+	fmt.Printf("Listening in port %s\n", Port)
 
 	s.ListenAndServe()
 }
